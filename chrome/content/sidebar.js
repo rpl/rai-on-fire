@@ -33,7 +33,7 @@ function parse(xmlblock) {
 }
 
 function render(data) {
-    var iframe = document.getElementsByTagName("iframe")[0].contentWindow.wrappedJSObject;  
+    var iframe = document.getElementById("raionfire-videonav-iframe").contentWindow;  
     iframe.postMessage(JSON.stringify(data), "*");  
 }
 

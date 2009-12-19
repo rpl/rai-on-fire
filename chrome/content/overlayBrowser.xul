@@ -3,6 +3,22 @@
 <overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script type="text/javascript" src="overlayBrowser.js"></script>
 
+  <menupopup id="viewSidebarMenu">
+    <menuitem observes="viewRaiOnFireSidebar"/>
+  </menupopup>
+
+  <broadcasterset id="mainBroadcasterSet"> 
+    <broadcaster id="viewRaiOnFireSidebar" 
+                 label="RAI-on-Fire"
+                 autoCheck="false"
+                 type="checkbox"
+                 group="sidebar"
+                 sidebarurl="chrome://rai-on-fire/content/sidebar.xul"
+                 sidebartitle="RAI-onFire"
+                 oncommand="toggleSidebar('viewRaiOnFireSidebar');" />
+  </broadcasterset>
+
+
   <statusbar id="status-bar">
     <statusbarpanel id="xbStatusBar" context="xbStatusContextMenu">
       <button id="raionfire-button" role="button" label="RAI on Fire" oncommand="raionfire_open()"/>
