@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!DOCTYPE overlay>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="text/javascript" src="overlayBrowser.js"></script>
+
+  <statusbar id="status-bar">
+    <statusbarpanel id="xbStatusBar" context="xbStatusContextMenu">
+      <button id="raionfire-button" role="button" label="RAI on Fire" oncommand="raionfire_open()"/>
+    </statusbarpanel>
+  </statusbar>
+ 
+</overlay>

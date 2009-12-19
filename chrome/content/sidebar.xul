@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE window>
+<window xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script type="text/javascript" src="sidebar.js"/>
+
+  <button id="raionfire-download-button" role="button" label="Download" oncommand="download()"/>
+  <iframe src="videoNav.html" flex="1"/>
+</window>
