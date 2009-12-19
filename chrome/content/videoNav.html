@@ -19,11 +19,22 @@
 	      "li.video": {
                  "video<-channel.videos": {
 		   "a.video_name": "video.name",
-                   "a.video_url@href": "video.url"
+                   "a.video_url@onclick": "openInVideoTab('#{video.url}');"
                  }
               }
 	   }
         }
+      }
+
+      function url(spec) {
+        var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+        return ios.newURI(spec, null, null);
+      }
+
+      function openInVideoTab(videourl) {
+        var activeWin = Application.activeWindow;
+        var videotab = activeWin.open(url(videourl));
+        videotab.focus();
       }
 
       $(function() { 
@@ -45,10 +56,10 @@
     <div id="videoRoot">
       <ul class="channels">
         <li class="channel">
-	  <h2 class="channel_name">CHANNEL NAME</h2>
+	  <h2 class="channel_name">RAI on Fire</h2>
 	  <ul class="videos">
 	    <li class="video">
-	      <a class="video_name video_url">video url</a>
+	      <a class="video_name video_url">scarica la lista dei programmi premendo il tasto <b>Download</b></a>
 	    </li>
 	  <ul>
 	</li>
