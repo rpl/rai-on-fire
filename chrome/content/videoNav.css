@@ -1,0 +1,25 @@
+body {
+  background-color: black;
+//  overflow: hidden;
+}
+
+.demo {
+  text-align: right;
+}
+
+h1 {
+  color: white;
+}
+
+h2 {
+  color: red;
+}
+
+a {
+  color: lightgrey;
+}
+
+a:hover {
+  color: green;
+  cursor: crosshair;
+}

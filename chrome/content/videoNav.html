@@ -1,6 +1,7 @@
 <html>
   <head>
     <title>Video Navigation</title>
+    <link rel="stylesheet" type="text/css" href="videoNav.css"></link>
     <script src="jquery-1.3.2.js"></script>
     <script src="pure.js"></script>
     <script>
@@ -12,10 +13,10 @@
       }
 
       var directive = {
-        "ul.channels": {
+        "li.channel": {
            "channel<-channels": {
               "h2.channel_name": "channel.name",
-	      "ul.videos": {
+	      "li.video": {
                  "video<-channel.videos": {
 		   "a.video_name": "video.name",
                    "a.video_url@href": "video.url"
@@ -31,7 +32,12 @@
          function receiveMessage(event)
          {
              $("div#videoRoot").render(JSON.parse(event.data),directive);
-         }  
+	     $(".videos").hide();
+             $("h2").click(function() {
+               $(this).next().slideToggle("fast");
+             });
+         }
+
       });
     </script>
   </head>
