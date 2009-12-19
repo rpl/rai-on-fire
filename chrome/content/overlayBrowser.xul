@@ -14,7 +14,7 @@
                  type="checkbox"
                  group="sidebar"
                  sidebarurl="chrome://rai-on-fire/content/sidebar.xul"
-                 sidebartitle="RAI-onFire"
+                 sidebartitle="RAI on Fire"
                  oncommand="toggleSidebar('viewRaiOnFireSidebar');" />
   </broadcasterset>
 
