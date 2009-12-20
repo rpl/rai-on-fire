@@ -18,11 +18,11 @@
                  oncommand="toggleSidebar('viewRaiOnFireSidebar');" />
   </broadcasterset>
 
-
-  <statusbar id="status-bar">
+  <!-- RAI ON FIRE DEBUGGING BUTTON -->
+  <!--statusbar id="status-bar">
     <statusbarpanel id="xbStatusBar" context="xbStatusContextMenu">
       <button id="raionfire-button" role="button" label="RAI on Fire" oncommand="raionfire_open()"/>
     </statusbarpanel>
-  </statusbar>
+  </statusbar-->
  
 </overlay>
