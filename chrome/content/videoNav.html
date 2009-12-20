@@ -3,6 +3,7 @@
     <title>Video Navigation</title>
     <link rel="stylesheet" type="text/css" href="videoNav.css"></link>
     <script src="jquery-1.3.2.js"></script>
+    <script src="jquery.highlight.js"></script>
     <script src="pure.js"></script>
     <script>
       TEST = {
@@ -37,7 +38,66 @@
         videotab.focus();
       }
 
-      $(function() { 
+      function shareOn(types) {
+        var res = [];
+	var share_message = "RAI.tv ad un solo click dalla sidebar di Mozilla Firefox http://bit.ly/rai-on-fire";
+
+	res = types.map(function(item) {
+	  var body="";
+          switch (item) {
+	  case "twitter": 
+	    body += '<a onclick="openInVideoTab(\'http://twitter.com/home?status='+
+		    encodeURIComponent(share_message)+'\');">tweet me!</a>';
+            return body; 
+	    break;
+	  case "email": 
+	    body += '<a href="mailto:my.friend@email.net?subject='+encodeURIComponent(share_message)+
+                    +'&body='+encodeURIComponent(share_message)+'">email me!</a>';
+            return body; 
+            break;
+	  case "facebook": 
+	    body += '<a onclick="openInVideoTab(\'http://www.facebook.com/sharer.php?u='+
+		    encodeURIComponent("http://bit.ly/rai-on-fire")+'&t='+
+		    encodeURIComponent(share_message)+'\');">share me on facebook!</a>';
+            return body; 
+            break;
+	  }
+	});
+	return res.join("<br/>");
+      }
+
+      $(function(e) { 
+         $("a").click(function() {
+           openInVideoTab($(this).attr("href"));
+         });
+
+	 $("a").highlight(null, 'highlight');
+
+
+         $('.toolTip').hover(
+           function() {
+             $(this).append(
+               '<div class="toolTipWrapper">'
+                 +'<div class="toolTipTop"></div>'
+                 +'<div class="toolTipMid">'
+                   +shareOn(["twitter","facebook","email"])
+                 +'</div>'
+                 +'<div class="toolTipBtm"></div>'
+              +'</div>'
+             );
+             this.title = "";
+             this.width = $(this).width();
+             $(this).find('.toolTipWrapper').css({left:this.width-22})
+             $('.toolTipWrapper').fadeIn(300);
+           },
+         function() {
+           $('.toolTipWrapper').fadeOut(100).remove();
+           //$('.toolTipWrapper').remove();
+           this.title = this.tip;
+         }
+       );
+
+
          window.addEventListener("message", receiveMessage, false);
 
          function receiveMessage(event)
@@ -47,23 +107,59 @@
              $("h2").click(function() {
                $(this).next().slideToggle("fast");
              });
+             $("a").click(function() {
+		  openInVideoTab($(this).attr("href"));
+						    });
+
          }
 
       });
     </script>
   </head>
   <body>
+    <div id="forkme" style="position: fixed; top: 0; right: 0; opacity: 0.7; z-index: 10000;">
+      <a href="http://github.com/rpl/rai-on-fire" onclick="return(false);">
+	<img src="forkme-new.png"/>
+      </a>
+    </div>
+    <div id="titlebar">
+      <a class="toolTip">+</a>
+      <h2 id="title">RAI on Fire</h2>
+    </div>
     <div id="videoRoot">
       <ul class="channels">
         <li class="channel">
-	  <h2 class="channel_name">RAI on Fire</h2>
+	  <h2 class="channel_name">
+	    <center>
+	      <img src="logo.png"/>
+	    </center>
+	  </h2>
 	  <ul class="videos">
 	    <li class="video">
-	      <a class="video_name video_url">scarica la lista dei programmi premendo il tasto <b>Download</b></a>
+	      <a class="video_name video_url">
+		<center><p>
+		Scarica la lista dei canali premendo
+		il tasto <b>Download</b>
+		</p></center>
+	      </a>
 	    </li>
-	  <ul>
+	  </ul>
 	</li>
-      <ul>
+      </ul>
     </div>
+    <hr />
+    <center>
+      Copyright 2009 - Luca Greco <br/>
+      <a id="mailto" 
+	 href="mailto:luca.greco@alcacoop.it?subject=[raionfire] ">
+	&lt;luca.greco@alcacoop.it&gt;
+      </a><br/>
+      <a href="http://www.linkedin.com/in/lucagreco" onclick="return(false);"><img src="linkedin.png"/></a>
+      <a href="http://twitter.com/lucagreco" onclick="return(false);"><img src="twitter.png"/></a>
+      <br />
+      <i>Hackable under 
+	<a href="http://www.gnu.org/licenses/gpl.html" onclick="return(false);">GPL v3</a> license
+      </i>
+    </center>
   </body>
 </html>

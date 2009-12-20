@@ -2,6 +2,10 @@ body {
   background-color: black;
 }
 
+* {
+  color: white;
+}
+
 ul, li, h2 {
   padding: 0;
   margin: 0;
@@ -11,23 +15,76 @@ h2 {
   margin-top: 4px;
 }
 
+#titlebar {
+  position: fixed;
+  top: 4px;
+  width: 100%;
+  background: black;
+}
+
+#titlebar h2 {
+  display: inline;
+}
+
+#title {
+  text-align: center;
+  color: black;
+  background: #a00000;
+  -moz-border-radius: 5px;
+  padding: 0 8;
+  margin: 0 auto;
+  width: -moz-fit-content;
+  z-index: 20000;
+}
+
+#videoRoot {
+  margin-top: 3em;
+}
+
+
+.highlight {
+  opacity: 0.6;
+}
+
+.toolTip {
+  background: #ff6600;
+  color: white;
+  font-size: 1.6em;
+  font-weight: bold;
+  -moz-border-radius: 5px;
+  padding: 2px;
+  top: 4px;
+  left: 4px;
+}
+
+.toolTipWrapper {
+  background: #a00000;
+  -moz-border-radius: 5px;
+  display: none;
+  position: absolute;
+  padding: 6;
+  margin-left: 6px;
+  margin-top: 2px;
+  width: -moz-max-content;
+}
+
+.toolTipWrapper a:hover {
+  color: orange;
+}
+
 .videos {
   text-align: left;
-}
-
-h1 {
-  color: white;
-}
-
-h2 {
-  color: red;
 }
 
 a {
   color: lightgrey;
 }
 
-a:hover {
+img {
+  border: 0;
+}
+
+a.video_url:hover {
   color: green;
   cursor: crosshair;
 }
