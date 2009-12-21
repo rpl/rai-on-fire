@@ -38,6 +38,8 @@ function render(data) {
 }
 
 function download() {
+    //clean iframe DOM...
+    document.getElementById("raionfire-videonav-iframe").contentDocument.location.reload();
     var req = new XMLHttpRequest();
     req.open('GET', 'http://www.rai.tv/dl/RaiTV/videoWall/PublishingBlock-5566288c-3d21-48dc-b3e2-af7fbe3b2af8.xml', true);
     req.onreadystatechange = function onreadychange(aEvt) {
