@@ -102,15 +102,25 @@
 
          function receiveMessage(event)
          {
-             $("div#videoRoot").render(JSON.parse(event.data),directive);
-	     $(".videos").hide();
-             $("h2").click(function() {
-               $(this).next().slideToggle("fast");
-             });
-             $("a").click(function() {
-		  openInVideoTab($(this).attr("href"));
-						    });
+	     var json_data = JSON.parse(event.data)
 
+	     if(json_data.show_message) {
+	       $("#message").html(json_data.show_message);
+	       $("#message").slideDown();
+	     }
+	     else if (json_data.hide_message) {
+	       $("#message").slideUp();
+	     }
+	     else {
+               $("div#videoRoot").render(json_data,directive);
+  	       $(".videos").hide();
+               $("h2").click(function() {
+                 $(this).next().slideToggle("fast");
+               });
+               $("a").click(function() {
+		  openInVideoTab($(this).attr("href"));
+	       });
+            } 
          }
 
       });
@@ -125,6 +135,8 @@
     <div id="titlebar">
       <a class="toolTip">+</a>
       <h2 id="title">RAI on Fire</h2>
+    </div>
+    <div id="message" style="display: none;">
     </div>
     <div id="videoRoot">
       <ul class="channels">

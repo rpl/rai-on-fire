@@ -26,6 +26,14 @@ h2 {
   display: inline;
 }
 
+#message {
+  margin-top: 3em;
+  padding: 4px;
+  background: yellow;
+  color: black;
+  -moz-border-radius: 4px;
+}
+
 #title {
   text-align: center;
   color: black;
