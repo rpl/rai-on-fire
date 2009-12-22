@@ -4,8 +4,13 @@
   <script type="text/javascript" src="overlayBrowser.js"></script>
 
   <menupopup id="viewSidebarMenu">
-    <menuitem observes="viewRaiOnFireSidebar"/>
+    <menuitem observes="viewRaiOnFireSidebar" key="raionfire-sidebar-open-key"/>
   </menupopup>
+
+  <keyset id="mainKeyset">
+    <key id="raionfire-sidebar-open-key" modifiers="control alt" key="R"
+         oncommand="toggleSidebar('viewRaiOnFireSidebar');" />
+  </keyset>
 
   <broadcasterset id="mainBroadcasterSet"> 
     <broadcaster id="viewRaiOnFireSidebar" 
