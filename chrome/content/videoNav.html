@@ -42,7 +42,6 @@
 	req.send(null);
 
 	if(req.status === 200) {
-	  alert(req.responseText);
 	  var realurl = /HREF=\"(.*)\"/.exec(req.responseText)[1];
           var videotab = activeWin.open(url(realurl));
           videotab.focus();
@@ -132,6 +131,7 @@
 	     else {
                $("div#videoRoot").render(json_data,directive);
   	       $(".videos").hide();
+	       $("#help").hide();
                $("h2").click(function() {
                  $(this).next().slideToggle("fast");
                });
@@ -162,25 +162,25 @@
 	  <ul class="videos">
 	    <li class="video">
 	      <a class="video_name video_url">
-		<center><p>
-		Scarica la lista dei canali premendo
-		il tasto <b>Download</b>
-		</p>
-		<p><b>NOTA:</b>
-		Questa estensione ha lo scopo di consetire l'accesso ai contenuti RAI.tv
-		nel caso in cui non dovessero essere regolarmente fruibili attraverlo il 
-		portale ufficiale: <br>
-		<h2>
-		  <a href="http://rai.tv">http://rai.tv</a>
-		</h2>
-		</p>
-		</center>
 	      </a>
 	    </li>
 	  </ul>
 	</li>
       </ul>
     </div>
+    <center id="help"><p>
+	Scarica la lista dei canali premendo
+	il tasto <b>Download</b>
+      </p>
+      <p><b>NOTA:</b>
+	Questa estensione ha lo scopo di consetire l'accesso ai contenuti RAI.tv
+	nel caso in cui non dovessero essere regolarmente fruibili attraverlo il 
+	portale ufficiale:
+	<h2>
+	  <a href="http://rai.tv">http://rai.tv</a>
+	</h2>
+      </p>
+    </center>
     <hr />
     <center>
       <a href="http://github.com/rpl/rai-on-fire" onclick="return(false);" style="position: absolute; right: 0;">
