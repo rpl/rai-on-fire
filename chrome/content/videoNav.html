@@ -5,6 +5,7 @@
     <script src="jquery-1.3.2.js"></script>
     <script src="jquery.highlight.js"></script>
     <script src="pure.js"></script>
+    <script src="external-videoapp.js"></script>
     <script>
       TEST = {
         generationDate: "2009-12-18 00:15:44",
@@ -29,13 +30,30 @@
 
       function url(spec) {
         var ios = Components.classes["@mozilla.org/network/io-service;1"].getService(Components.interfaces.nsIIOService);
+	Application.console.log("LOG - rai-on-fire: url "+spec);
         return ios.newURI(spec, null, null);
       }
 
       function openInVideoTab(videourl) {
         var activeWin = Application.activeWindow;
-        var videotab = activeWin.open(url(videourl));
-        videotab.focus();
+	var req = new XMLHttpRequest();
+	req.open('GET', videourl, false);
+	req.setRequestHeader('viaurl', 'rai.tv');
+	req.send(null);
+
+	if(req.status === 200) {
+	  alert(req.responseText);
+	  var realurl = /HREF=\"(.*)\"/.exec(req.responseText)[1];
+          var videotab = activeWin.open(url(realurl));
+          videotab.focus();
+	}
+	else {
+	  // ERRORE
+	}
+      }
+
+      function openTab(newurl) {
+        activeWin.open(url(newurl)).focus();
       }
 
       function shareOn(types) {
@@ -46,7 +64,7 @@
 	  var body="";
           switch (item) {
 	  case "twitter": 
-	    body += '<a onclick="openInVideoTab(\'http://twitter.com/home?status='+
+	    body += '<a onclick="openTab(\'http://twitter.com/home?status='+
 		    encodeURIComponent(share_message)+'\');">tweet me!</a>';
             return body; 
 	    break;
@@ -56,7 +74,7 @@
             return body; 
             break;
 	  case "facebook": 
-	    body += '<a onclick="openInVideoTab(\'http://www.facebook.com/sharer.php?u='+
+	    body += '<a onclick="openTab(\'http://www.facebook.com/sharer.php?u='+
 		    encodeURIComponent("http://bit.ly/rai-on-fire")+'&t='+
 		    encodeURIComponent(share_message)+'\');">share me on facebook!</a>';
             return body; 
@@ -127,11 +145,6 @@
     </script>
   </head>
   <body>
-    <div id="forkme" style="position: fixed; top: 0; right: 0; opacity: 0.7; z-index: 10000;">
-      <a href="http://github.com/rpl/rai-on-fire" onclick="return(false);">
-	<img src="forkme.png"/>
-      </a>
-    </div>
     <div id="titlebar">
       <a class="toolTip">+</a>
       <h2 id="title">RAI on Fire</h2>
@@ -152,7 +165,16 @@
 		<center><p>
 		Scarica la lista dei canali premendo
 		il tasto <b>Download</b>
-		</p></center>
+		</p>
+		<p><b>NOTA:</b>
+		Questa estensione ha lo scopo di consetire l'accesso ai contenuti RAI.tv
+		nel caso in cui non dovessero essere regolarmente fruibili attraverlo il 
+		portale ufficiale: <br>
+		<h2>
+		  <a href="http://rai.tv">http://rai.tv</a>
+		</h2>
+		</p>
+		</center>
 	      </a>
 	    </li>
 	  </ul>
@@ -161,17 +183,21 @@
     </div>
     <hr />
     <center>
+      <a href="http://github.com/rpl/rai-on-fire" onclick="return(false);" style="position: absolute; right: 0;">
+	<img src="forkme.png"/>
+      </a>
+      <i>Hackable under 
+	<a href="http://www.gnu.org/licenses/gpl.html" onclick="return(false);">GPL v3</a> license
+      </i>
+      <br/>
+      <a href="http://www.linkedin.com/in/lucagreco" onclick="return(false);"><img src="linkedin.png"/></a>
+      <a href="http://twitter.com/lucagreco" onclick="return(false);"><img src="twitter.png"/></a>
+      <br/>
       Copyright 2009 - Luca Greco <br/>
       <a id="mailto" 
 	 href="mailto:luca.greco@alcacoop.it?subject=[raionfire] ">
 	&lt;luca.greco@alcacoop.it&gt;
       </a><br/>
-      <a href="http://www.linkedin.com/in/lucagreco" onclick="return(false);"><img src="linkedin.png"/></a>
-      <a href="http://twitter.com/lucagreco" onclick="return(false);"><img src="twitter.png"/></a>
-      <br />
-      <i>Hackable under 
-	<a href="http://www.gnu.org/licenses/gpl.html" onclick="return(false);">GPL v3</a> license
-      </i>
     </center>
   </body>
 </html>
