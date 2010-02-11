@@ -2,7 +2,7 @@
 <RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:em="http://www.mozilla.org/2004/em-rdf#">
   <Description about="urn:mozilla:install-manifest">
     <em:id>rai-on-fire@ubik.cc</em:id>
-    <em:version>0.1pre1</em:version>
+    <em:version>0.1</em:version>
     <em:type>2</em:type>
     <!-- firefox -->
     <em:targetApplication>
@@ -14,7 +14,7 @@
     </em:targetApplication>
 
     <em:name>RAI on Fire</em:name>
-    <em:description>RAI.tv - .NET + OpenWeb</em:description>
+    <em:description>Accedere ai contenuti RAI.tv dalla sidebar di Firefox</em:description>
     <em:creator>Luca Greco</em:creator>
     <em:homepageURL>http://ubik.cc/projects/rai-on-fire</em:homepageURL>
   </Description>
